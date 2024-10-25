@@ -48,9 +48,8 @@ const sendWeatherEmail = async (email: string, city: string) => {
 const sendConfirmationEmail = async (email: string, token: string) => {
     try {
         const link = `${process.env.DOMAIN}/api/subscribe/verify?token=${token}`;
-        const emailTemplate = fs.readFileSync(path.join(__dirname, './verifyEmail.html'), 'utf-8');
+        const emailTemplate = fs.readFileSync(path.join(process.cwd(), 'src', 'services', 'verifyEmail.html'), 'utf-8');
         const emailContent = emailTemplate.replace('{{verification_link}}', link);
-
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
