@@ -32,7 +32,8 @@ const getCurrentWeather = async (req: Request, res: any) => {
 
         const currentWeather = {
             temperature: weatherData.current.temp_c,
-            condition: weatherData.current.condition.text,
+            conditionText: weatherData.current.condition.text,
+            conditionIcon: weatherData.current.condition.icon,
             wind_speed: weatherData.current.wind_kph,
             humidity: weatherData.current.humidity,
             city: weatherData.location.name,
@@ -100,7 +101,8 @@ const getWeatherForecast = async (req: Request, res: any) => {
         const forecastWeather = weatherData.forecast.forecastday.map((day: any) => ({
             date: day.date,
             temperature: day.day.avgtemp_c,
-            condition: day.day.condition.text,
+            conditionText: day.day.condition.text,
+            conditionIcon: day.day.condition.icon,
             wind_speed: day.day.maxwind_kph,
             humidity: day.day.avghumidity,
         }));
