@@ -37,6 +37,7 @@ const getCurrentWeather = async (req: Request, res: any) => {
             wind_speed: weatherData.current.wind_kph,
             humidity: weatherData.current.humidity,
             city: weatherData.location.name,
+            lastUpdated: weatherData.current.last_updated,
         };
 
         return res.status(200).json({
