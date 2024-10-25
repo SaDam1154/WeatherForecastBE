@@ -47,7 +47,7 @@ const sendWeatherEmail = async (email: string, city: string) => {
 // Hàm gửi email xác nhận
 const sendConfirmationEmail = async (email: string, token: string) => {
     try {
-        const link = `${process.env.DOMAIN}/api/subscribe/verify?token=${token}`;
+        const link = `${process.env.DOMAIN}/VerifyEmail/${token}`;
         const emailTemplate = fs.readFileSync(path.join(process.cwd(), 'src', 'services', 'verifyEmail.html'), 'utf-8');
         const emailContent = emailTemplate.replace('{{verification_link}}', link);
         const mailOptions = {
@@ -83,9 +83,9 @@ const sendScheduledEmails = async () => {
     }
 };
 
-// Lên lịch gửi email
+// Lên lịch gửi email mỗi 5 phút để kiểm tra thay vì mỗi ngày
 const startScheduledTask = () => {
-    cron.schedule('*/2 * * * *', () => {
+    cron.schedule('*/5 * * * *', () => {
         sendScheduledEmails();
     });
 };
