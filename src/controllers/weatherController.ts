@@ -80,13 +80,6 @@ const getWeatherForecast = async (req: Request, res: any) => {
             });
         }
 
-        if (days < 1 || days > 10) {
-            return res.status(400).json({
-                success: false,
-                message: 'Days must be between 1 and 10',
-            });
-        }
-
         const apiKey = process.env.WEATHER_API_KEY;
 
         if (!apiKey) {
@@ -96,10 +89,10 @@ const getWeatherForecast = async (req: Request, res: any) => {
             });
         }
 
-        const weatherResponse = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=${days}`);
+        const weatherResponse = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=${days + 1}`);
         const weatherData = weatherResponse.data;
 
-        const forecastWeather = weatherData.forecast.forecastday.map((day: any) => ({
+        const forecastWeather = weatherData.forecast.forecastday.slice(1).map((day: any) => ({
             date: day.date,
             temperature: day.day.avgtemp_c,
             conditionText: day.day.condition.text,
