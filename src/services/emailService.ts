@@ -24,7 +24,7 @@ const sendWeatherEmail = async (email: string, city: string) => {
 
         // Thiết lập nội dung email
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: 'Weather Forecast SADAM',
             to: email,
             subject: `Weather Update for ${city}`,
             html: `
@@ -51,7 +51,7 @@ const sendConfirmationEmail = async (email: string, token: string) => {
         const emailTemplate = fs.readFileSync(path.join(process.cwd(), 'src', 'services', 'verifyEmail.html'), 'utf-8');
         const emailContent = emailTemplate.replace('{{verification_link}}', link);
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: 'Weather Forecast SADAM',
             to: email,
             subject: 'Please confirm your Email account',
             html: emailContent,
@@ -85,7 +85,7 @@ const sendScheduledEmails = async () => {
 
 // Lên lịch gửi email mỗi giờ để kiểm tra thay vì mỗi ngày
 const startScheduledTask = () => {
-    cron.schedule('* */1 * * *', () => {
+    cron.schedule('* * */1 * *', () => {
         sendScheduledEmails();
     });
 };
