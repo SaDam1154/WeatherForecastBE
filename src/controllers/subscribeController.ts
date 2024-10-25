@@ -3,7 +3,7 @@ import { Subscriber } from '../models/Subscriber';
 import emailService from '../services/emailService';
 import crypto from 'crypto';
 
-// [POST] api/subscribe
+// [POST] api/subscribe/
 const subscribeWeather = async (req: Request, res: any) => {
     try {
         const { email, city } = req.body;
@@ -61,7 +61,7 @@ const subscribeWeather = async (req: Request, res: any) => {
     }
 };
 
-// [GET] api/verify
+// [GET] api/subscribe/verify
 const verifyEmail = async (req: Request, res: any) => {
     const { token } = req.query;
 
@@ -78,7 +78,7 @@ const verifyEmail = async (req: Request, res: any) => {
     return res.status(200).json({ success: true, message: 'Email has been successfully verified.' });
 };
 
-// Hủy đăng ký
+// api/subscribe/unsub
 const unSubscribeWeather = async (req: Request, res: any) => {
     const { email } = req.body;
 

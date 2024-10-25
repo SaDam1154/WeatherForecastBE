@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import route from './routes';
+import corsConfig from './configs/cors';
 import connectDB from './configs/db';
 import emailService from './services/emailService';
 
@@ -13,8 +14,9 @@ connectDB();
 // Khởi tạo ứng dụng express
 const app = express();
 app.use(express.json({ limit: '50mb' }));
+app.use(corsConfig);
 
-// Middleware và routes
+//  routes
 app.use('/api', route);
 
 // Route mặc định kiểm tra server

@@ -103,6 +103,7 @@ const getWeatherForecast = async (req: Request, res: any) => {
             condition: day.day.condition.text,
             wind_speed: day.day.maxwind_kph,
             humidity: day.day.avghumidity,
+            city: day.location.name,
         }));
 
         return res.status(200).json({
