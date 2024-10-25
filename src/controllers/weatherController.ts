@@ -1,5 +1,9 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import { Request, Response } from 'express-serve-static-core';
+
+axios.defaults.timeout = 5000;
+axiosRetry(axios, { retries: 3, retryDelay: (retryCount) => retryCount * 1000 });
 
 // [GET] api/weather
 const getCurrentWeather = async (req: Request, res: any) => {

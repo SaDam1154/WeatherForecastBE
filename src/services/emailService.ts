@@ -83,9 +83,9 @@ const sendScheduledEmails = async () => {
     }
 };
 
-// Lên lịch gửi email mỗi 5 phút để kiểm tra thay vì mỗi ngày
+// Lên lịch gửi email mỗi giờ để kiểm tra thay vì mỗi ngày
 const startScheduledTask = () => {
-    cron.schedule('*/5 * * * *', () => {
+    cron.schedule('* */1 * * *', () => {
         sendScheduledEmails();
     });
 };
