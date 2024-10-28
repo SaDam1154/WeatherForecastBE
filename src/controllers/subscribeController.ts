@@ -15,6 +15,15 @@ const subscribeWeather = async (req: Request, res: any) => {
             });
         }
 
+        // Kiểm tra định dạng email
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid email format.',
+            });
+        }
+
         const existingSubscriber = await Subscriber.findOne({ email });
 
         // Kiểm tra xem người dùng đã đăng ký và xác nhận rồi chưa.

@@ -85,7 +85,7 @@ const sendScheduledEmails = async () => {
 
 // Lên lịch gửi email mỗi giờ để kiểm tra thay vì mỗi ngày
 const startScheduledTask = () => {
-    cron.schedule('* * */1 * *', () => {
+    cron.schedule('0 * * * *', () => {
         sendScheduledEmails();
     });
 };
